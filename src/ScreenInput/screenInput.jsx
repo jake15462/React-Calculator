@@ -1,4 +1,5 @@
 import React from "react";
+import './screenInput.scss';
 
 function ScreenInput({ value }) {
   return (

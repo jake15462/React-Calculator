@@ -1,4 +1,5 @@
 import React from "react";
+import './opButton.scss';
 
 function opButton({ value, onClick }) {
   return (

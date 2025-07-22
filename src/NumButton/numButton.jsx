@@ -1,4 +1,6 @@
 import React from "react";
+import './numButton.scss';
+
 
 function NumButton({ value, onClick }) {
   return (

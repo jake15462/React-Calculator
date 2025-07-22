@@ -2,69 +2,22 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#root {
+  height: calc(100% - 80px);
 }
 
 .calculator {
@@ -72,20 +25,32 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  max-height: 800px;
-  max-width: 600px;
+  width: 95%;
+  max-width: 1000px;
   margin: auto;
-  background-color: #1a1a1a;
-  padding: 20px;
+  background-color: #f0f0f0;
+  padding: 40px;
+  border-radius: 12px;
+}
 
-  .calculator-inner {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 8px;
+.calculator-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(4rem, 10vh);
+  gap: 20px;
+  width: 100%;
+  padding-top: 30px;
+}
+
+@media (max-width: 600px) {
+  .num-button {
+    font-size: 1.4rem;
+    padding: 1rem;
+  }
+
+  .input-screen {
+    font-size: 1.6rem;
+    height: 60px;
+    padding: 0 1rem;
   }
 }
