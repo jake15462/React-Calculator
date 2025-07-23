@@ -10,14 +10,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
+html, body, #root {
   height: 100%;
   margin: 0;
-  padding: 0;
 }
 
 #root {
-  height: calc(100% - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .calculator {
@@ -42,15 +43,43 @@ html, body {
   padding-top: 30px;
 }
 
-@media (max-width: 600px) {
-  .num-button {
-    font-size: 1.4rem;
-    padding: 1rem;
-  }
+#calculate {
+  grid-column: span 2;
+}
 
+@media (max-width: 600px) {
   .input-screen {
     font-size: 1.6rem;
     height: 60px;
     padding: 0 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  .calculator {
+    width: 100%;
+    height: calc(100% - 40px);
+    max-width: none;
+    border-radius: 0;
+    padding: 20px;
+    padding: 20px 0;
+  }
+
+  .calculator-inner {
+    gap: 10px;
+    padding-top: 20px;
+    grid-auto-rows: minmax(3rem, 1fr);
+    width: calc(100% - 40px);
+    height: 100%;
   }
 }

@@ -34,12 +34,12 @@ const calculate = () => {
       <div className="calculator-inner">
         <OpButton value="" onClick={handleOperatorClick} />
         <OpButton value="" onClick={handleOperatorClick} />
-        <OpButton value="" onClick={handleOperatorClick} />
-        <OpButton value="+" onClick={handleOperatorClick} />
+        <OpButton value="C" onClick={handleOperatorClick} />
+        <OpButton value="/" onClick={handleOperatorClick} />
         <NumButton value="1" onClick={handleButtonClick} />
         <NumButton value="2" onClick={handleButtonClick} />
         <NumButton value="3" onClick={handleButtonClick} />
-        <OpButton value="-" onClick={handleOperatorClick} />
+        <OpButton value="+" onClick={handleOperatorClick} />
         <NumButton value="4" onClick={handleButtonClick} />
         <NumButton value="5" onClick={handleButtonClick} />
         <NumButton value="6" onClick={handleButtonClick} />
@@ -47,11 +47,10 @@ const calculate = () => {
         <NumButton value="7" onClick={handleButtonClick} />
         <NumButton value="8" onClick={handleButtonClick} />
         <NumButton value="9" onClick={handleButtonClick} />
-        <OpButton value="/" onClick={handleOperatorClick} />
+        <OpButton value="*" onClick={handleOperatorClick} />
         <NumButton value="." onClick={handleButtonClick} />
         <NumButton value="0" onClick={handleButtonClick} />
-        <OpButton value="C" onClick={handleOperatorClick} />
-        <OpButton value="=" onClick={calculate} />
+        <OpButton id="calculate" value="=" onClick={calculate} />
       </div>
     </div>
   );
