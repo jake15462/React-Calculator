@@ -6,16 +6,31 @@ import './App.css';
 
 function App() {
   const [currentValue, setCurrentValue] = useState("0");
+  const [calculated, setCalculated] = useState(false);
+  const operator = ["+", "-", "*", "/"];
 
   const handleButtonClick = (value) => {
-    setCurrentValue(prev => (prev === "0" ? value : prev + value));
+    if (calculated) {
+      setCurrentValue(value);
+      setCalculated(false);
+    } else {
+      setCurrentValue(prev => (prev === "0" ? value : prev + value));
+    }
   };
 
   const handleOperatorClick = (value) => {
     if (value === "C") {
       setCurrentValue("0");
+    } else if (value === "DEL") {
+      setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
     } else {
-      setCurrentValue(prev => (prev === "0" ? value : prev + value));
+      const lastchar = currentValue[currentValue.length - 1];
+      if (operator.includes(lastchar)) {
+        return;
+      } else {
+        setCurrentValue(prev => (prev === "0" ? value : prev + value));
+        setCalculated(false);
+      }
     }
   };
 
@@ -23,6 +38,7 @@ const calculate = () => {
   try {
     const result = new Function('return ' + currentValue)();
     setCurrentValue(String(result));
+    setCalculated(true);
   } catch {
     setCurrentValue("Error");
   }
@@ -33,7 +49,7 @@ const calculate = () => {
       <ScreenInput value={currentValue} />
       <div className="calculator-inner">
         <OpButton value="" onClick={handleOperatorClick} />
-        <OpButton value="" onClick={handleOperatorClick} />
+        <OpButton value="DEL" onClick={handleOperatorClick} />
         <OpButton value="C" onClick={handleOperatorClick} />
         <OpButton value="/" onClick={handleOperatorClick} />
         <NumButton value="1" onClick={handleButtonClick} />
