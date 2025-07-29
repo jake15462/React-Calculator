@@ -3,18 +3,18 @@
   width: 100%;
   padding: 1.5rem;
   font-size: 1.8rem;
-  background-color: lightblue;
+  background-color: #add8e6;
   color: #000;
   border: none;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #ccc;
+    background-color: #96C0D1;
   }
 
   &:active {
-    background-color: #bbb;
+    background-color: #96C0D1;
   }
 
   @media (max-width: 500px) {
