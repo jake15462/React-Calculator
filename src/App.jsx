@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import NumButton from './numButton/numButton';
-import OpButton from './opButton/opButton';
-import ScreenInput from './ScreenInput/screenInput';
-import HistoryButton from './HistoryButton/historyButton';
+import NumButton from './components/NumButton/numButton';
+import OpButton from './components/opButton/opButton';
+import ScreenInput from './components/ScreenInput/screenInput';
+import HistoryButton from './components/HistoryButton/historyButton';
+import Icon from './components/icon';
 import './App.css';
 
 function App() {
@@ -49,7 +50,7 @@ const calculate = () => {
     <div className="calculator">
       <ScreenInput value={currentValue} />
       <div className="calculator-inner">
-        <HistoryButton onClick={handleOperatorClick} />
+        <HistoryButton icon="history" onClick={handleOperatorClick} />
         <OpButton value="DEL" onClick={handleOperatorClick} />
         <OpButton value="C" onClick={handleOperatorClick} />
         <OpButton value="/" onClick={handleOperatorClick} />

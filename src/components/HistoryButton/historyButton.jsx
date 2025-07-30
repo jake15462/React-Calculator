@@ -1,10 +1,11 @@
 import React from "react";
 import './historyButton.scss';
+import Icon from '../icon';
 
-function historyButton({ img, id }) {
+function historyButton({ icon, id }) {
   return (
     <button id={id} className="history-button">
-      <img src={img} alt="" />
+      <Icon type={icon} width="24" height="24" />
     </button>
   );
 }
