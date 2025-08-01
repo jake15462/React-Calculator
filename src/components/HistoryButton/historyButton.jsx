@@ -2,12 +2,15 @@ import React from "react";
 import './historyButton.scss';
 import Icon from '../icon';
 
-function historyButton({ icon, id }) {
+function HistoryButton({ icon, toggleHistory, isActive }) {
   return (
-    <button id={id} className="history-button">
+    <button
+      className={`history-button ${isActive ? "active" : ""}`}
+      onClick={toggleHistory}
+    >
       <Icon type={icon} width="24" height="24" />
     </button>
   );
 }
 
-export default historyButton;
+export default HistoryButton;
