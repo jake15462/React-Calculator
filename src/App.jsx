@@ -5,6 +5,8 @@ import ScreenInput from './components/ScreenInput/screenInput';
 import HistoryButton from './components/HistoryButton/historyButton';
 import Icon from './components/icon';
 import HistoryComponent from './components/HistoryComponent/historyComponent';
+import { useEffect } from "react";
+
 import './App.css';
 
 function App() {
@@ -52,13 +54,54 @@ const calculate = () => {
   }
 };
 
+const keyFunction = ({ key }) => {
+  const keys = "0123456789.";
+  const operators = "+-*/()";
+
+  if (key === "Enter") {
+    calculate();
+    return;
+  }
+
+  if (key === "Backspace") {
+    setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
+    return;
+  }
+
+  if (keys.includes(key)) {
+    setCurrentValue(prev => (prev === "0" || calculated ? key : prev + key));
+    setCalculated(false);
+    return;
+  }
+
+  if (operators.includes(key)) {
+    const lastChar = currentValue[currentValue.length - 1];
+    if (currentValue !== "0" && !operators.includes(lastChar)) {
+      setCurrentValue(prev => prev + key);
+      setCalculated(false);
+    }
+    return;
+  }
+};
+
+useEffect(() => {
+  function onKeyDown(event) {
+    keyFunction(event);
+  }
+  window.addEventListener("keydown", onKeyDown);
+  return () => {
+    window.removeEventListener("keydown", onKeyDown);
+  };
+}, []);
+
+
   return (
   <div className="calculator">
     <div className="calculator-inner">
       <ScreenInput value={currentValue} />
       <div className="btn-container">
         <HistoryButton icon="history" toggleHistory={() => setHistoryActive(prev => !prev)} isActive={historyActive} />
-        <OpButton icon="delete" onClick={handleOperatorClick} />
+        <OpButton type="del" icon="delete" onClick={handleOperatorClick} />
         <OpButton value="C" onClick={handleOperatorClick} />
         <OpButton value="/" onClick={handleOperatorClick} />
         <NumButton value="1" onClick={handleButtonClick} />

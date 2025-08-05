@@ -2,9 +2,9 @@ import React from "react";
 import './opButton.scss';
 import Icon from "../icon";
 
-function opButton({ value, onClick, id, icon }) {
+function opButton({ value, onClick, id, icon, type }) {
   return (
-    <button id={id} className="op-button" onClick={() => onClick(value)}>
+    <button type={type} id={id} className="op-button" onClick={() => onClick(type || value)}>
       {value}
       <Icon type={icon} width="24" height="24" />
     </button>
