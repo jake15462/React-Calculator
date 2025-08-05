@@ -26,11 +26,11 @@ function App() {
   const handleOperatorClick = (value) => {
     if (value === "C") {
       setCurrentValue("0");
-    } else if (value === "DEL") {
+    } else if (value === "del") {
       setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
     } else {
       const lastchar = currentValue[currentValue.length - 1];
-      if (operator.includes(lastchar)) {
+      if (operator.includes(lastchar) || currentValue === "0") {
         return;
       } else {
         setCurrentValue(prev => (prev === "0" ? value : prev + value));
