@@ -41,14 +41,14 @@ function App() {
     }
   };
 
-const calculate = () => {
+const calculate = (value = currentValue) => {
   try {
-    const result = new Function('return ' + currentValue)();
+    const result = new Function('return ' + value)();
     const formattedResult = String(result);
     setCurrentValue(formattedResult);
     setCalculated(true);
-    const newEntry = currentValue + " = " + formattedResult;
-    setHistory(prev => [...prev, newEntry]); // Just add the string to the array
+    const newEntry = value + " = " + formattedResult;
+    setHistory(prev => [...prev, newEntry]);
   } catch {
     setCurrentValue("Error");
   }
@@ -59,9 +59,9 @@ const keyFunction = ({ key }) => {
   const operators = "+-*/()";
 
   if (key === "Enter") {
-    calculate();
-    return;
-  }
+    calculate(currentValue);
+  return;
+}
 
   if (key === "Backspace") {
     setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
@@ -85,14 +85,12 @@ const keyFunction = ({ key }) => {
 };
 
 useEffect(() => {
-  function onKeyDown(event) {
-    keyFunction(event);
-  }
-  window.addEventListener("keydown", onKeyDown);
+  window.addEventListener("keydown", keyFunction);
   return () => {
-    window.removeEventListener("keydown", onKeyDown);
+    window.removeEventListener("keydown", keyFunction);
   };
-}, []);
+}, [currentValue, calculated]);
+
 
 
   return (
