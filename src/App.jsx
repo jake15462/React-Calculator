@@ -68,6 +68,19 @@ const keyFunction = ({ key }) => {
     return;
   }
 
+  if (key === "c") {
+    setCurrentValue("0");
+    return;
+  }
+
+  if (key === "h" && !historyActive) {
+    setHistoryActive(true)
+    return;
+  } else if (key === "h" && historyActive) {
+    setHistoryActive(false)
+    return;
+  }
+
   if (keys.includes(key)) {
     setCurrentValue(prev => (prev === "0" || calculated ? key : prev + key));
     setCalculated(false);
@@ -89,7 +102,7 @@ useEffect(() => {
   return () => {
     window.removeEventListener("keydown", keyFunction);
   };
-}, [currentValue, calculated]);
+}, [currentValue, calculated, historyActive]);
 
 
 
