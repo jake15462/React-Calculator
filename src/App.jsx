@@ -116,7 +116,7 @@ useEffect(() => {
         <OpButton value="*" onClick={handleOperatorClick} />
         <NumButton value="." onClick={handleButtonClick} />
         <NumButton value="0" onClick={handleButtonClick} />
-        <OpButton id="calculate" value="=" onClick={calculate} />
+        <OpButton id="calculate" value="=" onClick={() => calculate()} />
       </div>
       {historyActive && <HistoryComponent id="historyComponent" history={history} />}
     </div>
