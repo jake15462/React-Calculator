@@ -111,25 +111,25 @@ useEffect(() => {
     <div className="calculator-inner">
       <ScreenInput value={currentValue} />
       <div className="btn-container">
-        <HistoryButton icon="history" toggleHistory={() => setHistoryActive(prev => !prev)} isActive={historyActive} />
-        <OpButton type="del" icon="delete" onClick={handleOperatorClick} />
-        <OpButton value="C" onClick={handleOperatorClick} />
-        <OpButton value="/" onClick={handleOperatorClick} />
-        <NumButton value="1" onClick={handleButtonClick} />
-        <NumButton value="2" onClick={handleButtonClick} />
-        <NumButton value="3" onClick={handleButtonClick} />
-        <OpButton value="+" onClick={handleOperatorClick} />
-        <NumButton value="4" onClick={handleButtonClick} />
-        <NumButton value="5" onClick={handleButtonClick} />
-        <NumButton value="6" onClick={handleButtonClick} />
-        <OpButton value="-" onClick={handleOperatorClick} />
-        <NumButton value="7" onClick={handleButtonClick} />
-        <NumButton value="8" onClick={handleButtonClick} />
-        <NumButton value="9" onClick={handleButtonClick} />
-        <OpButton value="*" onClick={handleOperatorClick} />
-        <NumButton value="." onClick={handleButtonClick} />
-        <NumButton value="0" onClick={handleButtonClick} />
-        <OpButton id="calculate" value="=" onClick={() => calculate()} />
+        <HistoryButton icon="history" toggleHistory={() => setHistoryActive(prev => !prev)} isActive={historyActive} aria-label="History" />
+        <OpButton type="del" icon="delete" onClick={handleOperatorClick} aria-label="Backspace" />
+        <OpButton value="C" onClick={handleOperatorClick} aria-label="Clear" />
+        <OpButton value="/" onClick={handleOperatorClick} aria-label="Divide" />
+        <NumButton value="1" onClick={handleButtonClick} aria-label="number 1" />
+        <NumButton value="2" onClick={handleButtonClick} aria-label="number 2" />
+        <NumButton value="3" onClick={handleButtonClick} aria-label="number 3" />
+        <OpButton value="+" onClick={handleOperatorClick} aria-label="Add" />
+        <NumButton value="4" onClick={handleButtonClick} aria-label="number 4" />
+        <NumButton value="5" onClick={handleButtonClick} aria-label="number 5" />
+        <NumButton value="6" onClick={handleButtonClick} aria-label="number 6" />
+        <OpButton value="-" onClick={handleOperatorClick} aria-label="Subtract" />
+        <NumButton value="7" onClick={handleButtonClick} aria-label="number 7" />
+        <NumButton value="8" onClick={handleButtonClick} aria-label="number 8" />
+        <NumButton value="9" onClick={handleButtonClick} aria-label="number 9" />
+        <OpButton value="*" onClick={handleOperatorClick} aria-label="Multiply" />
+        <NumButton value="." onClick={handleButtonClick} aria-label="Decimal point" />
+        <NumButton value="0" onClick={handleButtonClick} aria-label="number 0" />
+        <OpButton id="calculate" value="=" onClick={() => calculate()} aria-label="Calculate" />
       </div>
       {historyActive && <HistoryComponent id="historyComponent" history={history} />}
     </div>
