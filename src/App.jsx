@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import NumButton from './components/NumButton/numButton';
 import OpButton from './components/opButton/opButton';
 import ScreenInput from './components/ScreenInput/screenInput';
@@ -41,7 +41,7 @@ function App() {
     }
   };
 
-const calculate = (value = currentValue) => {
+const calculate = useCallback((value = currentValue) => {
   try {
     const result = new Function('return ' + value)();
     const formattedResult = String(result);
@@ -52,57 +52,58 @@ const calculate = (value = currentValue) => {
   } catch {
     setCurrentValue("Error");
   }
-};
-
-const keyFunction = ({ key }) => {
-  const keys = "0123456789.";
-  const operators = "+-*/()";
-
-  if (key === "Enter") {
-    calculate(currentValue);
-  return;
-}
-
-  if (key === "Backspace") {
-    setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
-    return;
-  }
-
-  if (key === "c") {
-    setCurrentValue("0");
-    return;
-  }
-
-  if (key === "h" && !historyActive) {
-    setHistoryActive(true)
-    return;
-  } else if (key === "h" && historyActive) {
-    setHistoryActive(false)
-    return;
-  }
-
-  if (keys.includes(key)) {
-    setCurrentValue(prev => (prev === "0" || calculated ? key : prev + key));
-    setCalculated(false);
-    return;
-  }
-
-  if (operators.includes(key)) {
-    const lastChar = currentValue[currentValue.length - 1];
-    if (currentValue !== "0" && !operators.includes(lastChar)) {
-      setCurrentValue(prev => prev + key);
-      setCalculated(false);
-    }
-    return;
-  }
-};
+}, [currentValue]);
 
 useEffect(() => {
+  const keyFunction = ({ key }) => {
+    const keys = "0123456789.";
+    const operators = "+-*/()";
+
+    if (key === "Enter") {
+      calculate(currentValue);
+    return;
+  }
+
+    if (key === "Backspace") {
+      setCurrentValue(prev => prev.length > 1 ? prev.slice(0, -1) : "0");
+      return;
+    }
+
+    if (key === "c") {
+      setCurrentValue("0");
+      return;
+    }
+
+    if (key === "h" && !historyActive) {
+      setHistoryActive(true)
+      return;
+    } else if (key === "h" && historyActive) {
+      setHistoryActive(false)
+      return;
+    }
+
+    if (keys.includes(key)) {
+      setCurrentValue(prev => (prev === "0" || calculated ? key : prev + key));
+      setCalculated(false);
+      return;
+    }
+
+    if (operators.includes(key)) {
+      const lastChar = currentValue[currentValue.length - 1];
+      if (currentValue !== "0" && !operators.includes(lastChar)) {
+        setCurrentValue(prev => prev + key);
+        setCalculated(false);
+      }
+      return;
+    }
+  };
+  
   window.addEventListener("keydown", keyFunction);
+
   return () => {
     window.removeEventListener("keydown", keyFunction);
   };
-}, [currentValue, calculated, historyActive]);
+}, [currentValue, calculated, historyActive, calculate]);
 
 
 
